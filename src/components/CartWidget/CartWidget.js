@@ -1,7 +1,9 @@
+import "./CartWidget.css";
+
 const CartWidget = () => {
   return (
     <div>
-      <img src="images/cart.png" width="80px" alt="cart" />
+      <img src="images/cart.png" className="CartWidget" alt="cart" />
     </div>
   );
 };

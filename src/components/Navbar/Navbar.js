@@ -6,8 +6,10 @@ import CartWidget from "../CartWidget/CartWidget";
 const Navbar = () => {
   return (
     <nav className="Navbar">
-      <div>Dr. Álvarez</div>
       <div>
+        <img src="images/logo-circular.png" className="logo" alt="logo" />
+      </div>
+      <div className="navbarButtons">
         <Button label="Inicio" />
         <Button label="Contacto" />
         <Button label="Nosotros" />

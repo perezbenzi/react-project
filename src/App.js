@@ -1,12 +1,18 @@
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
-import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
+import Counter from "./components/Counter/ItemCount";
 
 function App() {
+  const handleOnAdd = (quantity) => {
+    alert("Se ha agregado " + quantity + " productos al carrito.");
+  };
+
   return (
     <div>
       <Navbar />
-      <ItemListContainer greeting="Hola Mundo" />
+      <div className="body">
+        <Counter stock={6} initial={1} onAdd={handleOnAdd} />
+      </div>
     </div>
   );
 }
