@@ -1,5 +1,14 @@
+import "./Item.css";
+
 const Item = ({ product }) => {
-  return <li key={product.id}>{product.name}</li>;
+    return (
+        <div className="card" key={product.id}>
+            <img src={product.img} alt="img" width="256px"></img>
+            <div>{product.name}</div>
+            <button>Ver detalles</button>
+            <div>Stock disponible: {product.stock}</div>
+        </div>
+    );
 };
 
 export default Item;
