@@ -1,23 +1,23 @@
 .buttonAdd {
-  width: 204px;
-  height: 40px;
-  margin-top: 5px;
+    width: 204px;
+    height: 40px;
+    margin-top: 5px;
 }
 
 .counterDiv {
-  background-color: rgba(86, 91, 134, 0.545);
-  padding: 1rem;
-  width: 250px;
-  border: solid 1px;
-  margin-left: auto;
-  margin-right: auto;
+    background-color: rgba(86, 91, 134, 0.545);
+    padding: 1rem;
+    width: 250px;
+    border: solid 1px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .countSpace {
-  background-color: rgb(195, 190, 239);
-  width: 203px;
-  border: solid 1px;
-  margin-bottom: 3px;
-  margin-left: auto;
-  margin-right: auto;
+    background-color: rgb(195, 190, 239);
+    width: 203px;
+    border: solid 1px;
+    margin-bottom: 3px;
+    margin-left: auto;
+    margin-right: auto;
 }

@@ -1,8 +1,12 @@
-.body {
+.itemListContainer {
     text-align: center;
     margin-top: 5rem;
     display: flex;
     justify-content: center;
+}
+
+.itemDetailContainer {
+    text-align: center;
 }
 
 .ItemList {
