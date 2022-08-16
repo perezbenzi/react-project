@@ -44,7 +44,16 @@ const ButtonCount = ({ onConfirm, stock, initial = 1 }) => {
     );
 };
 
-const ItemDetail = ({ id, name, category, img, price, stock, description }) => {
+const ItemDetail = ({
+    id,
+    name,
+    category,
+    img,
+    price,
+    stock,
+    description,
+    addItem,
+}) => {
     const [inputType] = useState("input");
 
     const [quantity, setQuantity] = useState(0);
@@ -52,8 +61,9 @@ const ItemDetail = ({ id, name, category, img, price, stock, description }) => {
     const ItemCount = inputType === "input" ? InputCount : ButtonCount;
 
     const handleOnAdd = (quantity) => {
-        console.log("agregue al carrito: ", quantity);
+        console.log("agregue al carrito: ", quantity, name);
         setQuantity(quantity);
+        addItem({ id, name, price, quantity });
     };
 
     return (

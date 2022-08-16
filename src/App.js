@@ -1,4 +1,5 @@
 import "./App.css";
+import { useState, createContex } from "react";
 import Navbar from "./components/Navbar/Navbar";
 // import Counter from "./components/Counter/ItemCount";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
@@ -9,6 +10,14 @@ function App() {
     // const handleOnAdd = (quantity) => {
     //     alert("Se ha agregado " + quantity + " productos al carrito.");
     // };
+
+    const [cart, setCart] = useState([]);
+
+    const addItem = (productToAdd) => {
+        setCart([...cart, productToAdd]);
+    };
+
+    console.log(cart);
 
     return (
         <div>
@@ -22,7 +31,7 @@ function App() {
                     />
                     <Route
                         path="/detail/:productId"
-                        element={<ItemDetailContainer />}
+                        element={<ItemDetailContainer addItem={addItem} />}
                     />
                     {/* <Counter stock={6} initial={1} onAdd={handleOnAdd} /> */}
                 </Routes>
