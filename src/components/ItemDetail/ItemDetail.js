@@ -1,21 +1,18 @@
 import "./ItemDetail.css";
-// import ItemCount from "../ItemCount/ItemCount";
-// import { editableInputTypes } from "@testing-library/user-event/dist/utils";
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import ItemCount from "../ItemCount/ItemCount";
 import { CartContext } from "../../context/CartContext";
 
-const ItemDetail = ({ id, name, category, img, price, stock, description }) => {
-    const [inputType] = useState("input");
-
+const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
     const [quantity, setQuantity] = useState(0);
 
-    const ItemCount = inputType === "input" ? InputCount : ButtonCount;
+    const { addItem, getProductQuantity } = useContext(CartContext);
 
-    const { addItem } = useContext(CartContext);
+    const quantityAdded = getProductQuantity(id);
 
     const handleOnAdd = (quantity) => {
-        console.log("agregue al carrito: ");
+        console.log("agregue al carrito");
         console.log(quantity);
         setQuantity(quantity);
         addItem({ id, name, price, quantity });
@@ -35,60 +32,19 @@ const ItemDetail = ({ id, name, category, img, price, stock, description }) => {
                 <p className="Info">Precio: {price}</p>
             </section>
             <footer className="ItemFooter">
-                {/* <ItemCount stock={stock} onAdd={handleOnAdd} /> */}
-                {/* {inputType === "buton" ? (
-                    <ButtonCount stock={stock} onConfirm={handleOnAdd} />
-                ) : null}
-                {inputType === "input" ? (
-                    <InputCount stock={stock} onConfirm={handleOnAdd} />
-                ) : null} */}
                 {quantity > 0 ? (
-                    <Link to="/cart">Ir al carrito</Link>
+                    <Link to="/cart" className="Option">
+                        Finalizar compra
+                    </Link>
                 ) : (
-                    <ItemCount stock={stock} onConfirm={handleOnAdd} />
+                    <ItemCount
+                        stock={stock}
+                        onAdd={handleOnAdd}
+                        initial={quantityAdded}
+                    />
                 )}
             </footer>
         </article>
-    );
-};
-
-const InputCount = ({ onConfirm, stock, initial = 1 }) => {
-    const [count, setCount] = useState(initial);
-
-    const handleChange = (e) => {
-        if (e.target.value <= stock) {
-            setCount(e.target.value);
-        }
-    };
-
-    return (
-        <div>
-            <input type="number" onChange={handleChange} value={count} />
-            <button onClick={() => onConfirm(count)}>Agregar al carrito</button>
-        </div>
-    );
-};
-
-const ButtonCount = ({ onConfirm, stock, initial = 1 }) => {
-    const [count, setCount] = useState(initial);
-
-    const increment = () => {
-        if (count < stock) {
-            setCount(count + 1);
-        }
-    };
-
-    const decrement = () => {
-        setCount(count - 1);
-    };
-
-    return (
-        <div>
-            <p>{count}</p>
-            <button onClick={decrement}>-</button>
-            <button onClick={increment}>+</button>
-            <button onClick={() => onConfirm(count)}>Agregar al carrito</button>
-        </div>
     );
 };
 
