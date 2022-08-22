@@ -47,11 +47,11 @@ export const CartContextProvider = ({ children }) => {
         setCart([]);
     };
 
-    const getProductQuantity = (id) => {
-        const product = cart.find((prod) => prod.id === id);
+    // const getProductQuantity = (id) => {
+    //     const product = cart.find((prod) => prod.id === id);
 
-        return product?.quantity;
-    };
+    //     return product?.quantity;
+    // };
 
     return (
         <CartContext.Provider
@@ -62,7 +62,7 @@ export const CartContextProvider = ({ children }) => {
                 removeItem,
                 clearCart,
                 getQuantity,
-                getProductQuantity,
+                /*getProductQuantity*/
             }}
         >
             {children}
