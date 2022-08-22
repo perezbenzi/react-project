@@ -7,15 +7,15 @@ import { CartContext } from "../../context/CartContext";
 const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
     const [quantity, setQuantity] = useState(0);
 
-    const { addItem /*getProductQuantity*/ } = useContext(CartContext);
+    const { addItem, getProductQuantity } = useContext(CartContext);
 
-    // const quantityAdded = getProductQuantity(id);
+    const quantityAdded = getProductQuantity(id);
 
     const handleOnAdd = (quantity) => {
         console.log("agregue al carrito");
         console.log(quantity);
         setQuantity(quantity);
-        addItem({ id, name, price, quantity });
+        addItem({ id, name, price, quantity, stock });
     };
 
     return (
@@ -37,7 +37,11 @@ const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
                         Finalizar compra
                     </Link>
                 ) : (
-                    <ItemCount stock={stock} onAdd={handleOnAdd} initial={0} />
+                    <ItemCount
+                        stock={stock}
+                        onAdd={handleOnAdd}
+                        initial={quantityAdded}
+                    />
                 )}
             </footer>
         </article>

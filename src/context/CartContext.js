@@ -11,11 +11,17 @@ export const CartContextProvider = ({ children }) => {
         } else {
             const cartUpdated = cart.map((prod) => {
                 if (prod.id === productToAdd.id) {
-                    const productUpdated = {
-                        ...prod,
-                        quantity: productToAdd.quantity,
-                    };
-                    return productUpdated;
+                    console.log(prod);
+                    if (productToAdd.quantity + prod.quantity > prod.stock) {
+                        alert("se superta el stock");
+                        return prod;
+                    } else {
+                        const productUpdated = {
+                            ...prod,
+                            quantity: productToAdd.quantity + prod.quantity,
+                        };
+                        return productUpdated;
+                    }
                 } else {
                     return prod;
                 }
@@ -47,11 +53,11 @@ export const CartContextProvider = ({ children }) => {
         setCart([]);
     };
 
-    // const getProductQuantity = (id) => {
-    //     const product = cart.find((prod) => prod.id === id);
+    const getProductQuantity = (id) => {
+        const product = cart.find((prod) => prod.id === id);
 
-    //     return product?.quantity;
-    // };
+        return product?.quantity;
+    };
 
     return (
         <CartContext.Provider
@@ -62,7 +68,7 @@ export const CartContextProvider = ({ children }) => {
                 removeItem,
                 clearCart,
                 getQuantity,
-                /*getProductQuantity*/
+                getProductQuantity,
             }}
         >
             {children}
