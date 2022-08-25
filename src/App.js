@@ -5,29 +5,35 @@ import ItemListContainer from "./components/ItemListContainer/ItemListContainer"
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartContextProvider } from "./context/CartContext";
+import { NotificationProvider } from "./notification/Notification";
+import Cart from "./components/Cart/Cart";
 
 function App() {
     return (
         <div>
-            <CartContextProvider>
-                <BrowserRouter>
-                    <Navbar />
-                    <Routes>
-                        <Route path="/" element={<ItemListContainer />} />
-                        <Route
-                            path="/category/:categoryId"
-                            element={<ItemListContainer />}
-                        />
-                        <Route
-                            path="/detail/:productId"
-                            element={
-                                <ItemDetailContainer /*addItem={addItem}*/ />
-                            }
-                        />
-                        <Route path="/cart" element={<h1>CART</h1>} />
-                    </Routes>
-                </BrowserRouter>
-            </CartContextProvider>
+            <NotificationProvider>
+                <CartContextProvider>
+                    <BrowserRouter>
+                        <Navbar />
+                        <NotificationProvider />
+                        <Routes>
+                            <Route path="/" element={<ItemListContainer />} />
+                            <Route
+                                path="/category/:categoryId"
+                                element={<ItemListContainer />}
+                            />
+                            <Route
+                                path="/detail/:productId"
+                                element={
+                                    <ItemDetailContainer /*addItem={addItem}*/
+                                    />
+                                }
+                            />
+                            <Route path="/cart" element={<Cart />} />
+                        </Routes>
+                    </BrowserRouter>
+                </CartContextProvider>
+            </NotificationProvider>
         </div>
     );
 }
