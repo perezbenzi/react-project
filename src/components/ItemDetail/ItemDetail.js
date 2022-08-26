@@ -40,11 +40,7 @@ const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
                         Finalizar compra
                     </Link>
                 ) : (
-                    <ItemCount
-                        stock={stock}
-                        onAdd={handleOnAdd}
-                        initial={quantityAdded}
-                    />
+                    <ItemCount stock={stock} onAdd={handleOnAdd} initial={1} />
                 )}
             </footer>
         </article>
